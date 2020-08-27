@@ -1,0 +1,12 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.max.custom">
+    <application>
+
+        <activity android:name=".activity.CustomActivity"/>
+
+
+
+    </application>
+
+
+</manifest>
