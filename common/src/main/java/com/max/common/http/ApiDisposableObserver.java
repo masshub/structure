@@ -2,6 +2,7 @@ package com.max.common.http;
 
 import com.max.common.App;
 import com.max.common.base.AppManager;
+import com.max.common.base.BaseResponse;
 import com.max.common.http.utils.NetworkUtil;
 import com.max.common.utils.LogUtil;
 import com.max.common.utils.ToastUtils;

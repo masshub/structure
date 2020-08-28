@@ -8,4 +8,6 @@ public class GlobalConfig {
     public static boolean isDebug = false;
     public static String baseUrl = "https://www.oschina.net/";
 
+    public static String environment = "";
+
 }

@@ -1,0 +1,9 @@
+package com.max.common.binding.command;
+
+/**
+ * Created by Maker on 2020/8/28.
+ * Description:
+ */
+public interface BindingConsumer<T> {
+    void call(T t);
+}

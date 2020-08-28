@@ -1,4 +1,4 @@
-package com.max.common.http;
+package com.max.common.base;
 
 /**
  * Created by Maker on 2020/8/27.
