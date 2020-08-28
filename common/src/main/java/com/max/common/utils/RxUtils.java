@@ -10,20 +10,20 @@ import com.max.common.http.ExceptionHandle;
 import com.trello.rxlifecycle4.LifecycleProvider;
 import com.trello.rxlifecycle4.LifecycleTransformer;
 
-
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.ObservableTransformer;
+import io.reactivex.Scheduler;
+import io.reactivex.functions.Function;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.ObservableSource;
-import io.reactivex.rxjava3.core.ObservableTransformer;
-import io.reactivex.rxjava3.functions.Function;
-import io.reactivex.rxjava3.schedulers.Schedulers;
+import io.reactivex.schedulers.Schedulers;
 
 
 /**
  * Created by Maker on 2020/8/27.
  * Description:
  */
-class RxUtils {
+public class RxUtils {
     /**
      * 生命周期绑定
      *
@@ -67,7 +67,7 @@ class RxUtils {
             @Override
             public ObservableSource apply(Observable upstream) {
                 return upstream.subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread());
+                        .observeOn(Schedulers.newThread());
             }
         };
     }
