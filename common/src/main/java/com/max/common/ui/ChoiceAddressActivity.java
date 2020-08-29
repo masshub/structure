@@ -9,12 +9,14 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.max.common.R;
 import com.max.common.R2;
 import com.max.common.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
 
 /**
  * Created by Maker on 2020/8/28.
@@ -53,7 +55,7 @@ public class ChoiceAddressActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R2.layout.activity_choice_address);
+        setContentView(R.layout.activity_choice_address);
         ButterKnife.bind(this);
 
     }

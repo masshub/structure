@@ -27,8 +27,8 @@ import java.util.Map;
  * Created by Maker on 2020/8/27.
  * Description:
  */
-public abstract class BaseActivity<V extends ViewDataBinding, VM extends BaseViewModel> extends AppCompatActivity implements IBaseView, LifecycleProvider<ActivityEvent> {
-    protected V binding;
+public abstract class BaseActivity<VM extends BaseViewModel> extends AppCompatActivity implements IBaseView, LifecycleProvider<ActivityEvent> {
+//    protected V binding;
     protected VM viewModel;
     private int viewModelId;
 //    private MaterialDialog dialog;
@@ -58,9 +58,9 @@ public abstract class BaseActivity<V extends ViewDataBinding, VM extends BaseVie
         if (viewModel != null) {
             viewModel.removeRxBus();
         }
-        if (binding != null) {
-            binding.unbind();
-        }
+//        if (binding != null) {
+//            binding.unbind();
+//        }
     }
 
     /**
@@ -68,7 +68,7 @@ public abstract class BaseActivity<V extends ViewDataBinding, VM extends BaseVie
      */
     private void initViewDataBinding(Bundle savedInstanceState) {
         //DataBindingUtil类需要在project的build中配置 dataBinding {enabled true }, 同步后会自动关联android.databinding包
-        binding = DataBindingUtil.setContentView(this, initContentView(savedInstanceState));
+//        binding = DataBindingUtil.setContentView(this, initContentView(savedInstanceState));
         viewModelId = initVariableId();
         viewModel = initViewModel();
         if (viewModel == null) {
@@ -83,7 +83,7 @@ public abstract class BaseActivity<V extends ViewDataBinding, VM extends BaseVie
             viewModel = (VM) createViewModel(this, modelClass);
         }
         //关联ViewModel
-        binding.setVariable(viewModelId, viewModel);
+//        binding.setVariable(viewModelId, viewModel);
         //支持LiveData绑定xml，数据改变，UI自动会更新
         //让ViewModel拥有View的生命周期感应
         getLifecycle().addObserver(viewModel);
@@ -93,9 +93,9 @@ public abstract class BaseActivity<V extends ViewDataBinding, VM extends BaseVie
 
     //刷新布局
     public void refreshLayout() {
-        if (viewModel != null) {
-            binding.setVariable(viewModelId, viewModel);
-        }
+//        if (viewModel != null) {
+//            binding.setVariable(viewModelId, viewModel);
+//        }
     }
 
 
