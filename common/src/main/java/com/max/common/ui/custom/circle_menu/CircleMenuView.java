@@ -391,35 +391,37 @@ public class CircleMenuView extends FrameLayout {
 
         // 根据menu item的个数，计算角度
         // 根据menu item的个数，计算角度
-        float angleDelay = 360 / (getChildCount() - 1);
-
-        // 遍历去设置menuitem的位置
-        for (int i = 0; i < childCount; i++)
-        {
-            final View child = mButtons.get(i);
-
-            mStartAngle %= 360;
-
-            // 计算，中心点到menu item中心的距离
-            float tmp = mRingRadius / 1f - 200 / 2 - 0;
+//        float angleDelay = 360 / (getChildCount() - 1);
 //
-//            // tmp cosa 即menu item中心点的横坐标
-            left = mRingRadius
-                    / 1
-                    + (int) Math.round(tmp
-                    * Math.cos(Math.toRadians(mStartAngle)) - 1 / 2f
-                    * 200);
-//            // tmp sina 即menu item的纵坐标
-            top = mRingRadius
-                    / 1
-                    + (int) Math.round(tmp
-                    * Math.sin(Math.toRadians(mStartAngle)) - 1 / 2f
-                    * 200);
+//        // 遍历去设置menuitem的位置
+//        for (int i = 0; i < childCount; i++)
+//        {
+//            final View child = mButtons.get(i);
 //
-            child.layout(left, top, left + 200, top + 200);
-            // 叠加尺寸
-            mStartAngle += angleDelay;
-        }
+//            mStartAngle %= 360;
+//
+//            // 计算，中心点到menu item中心的距离
+//            float tmp = mRingRadius / 1f - 200 / 2 - 0;
+////
+////            // tmp cosa 即menu item中心点的横坐标
+//            left = mRingRadius
+//                    / 1
+//                    + (int) Math.round(tmp
+//                    * Math.cos(Math.toRadians(mStartAngle)) - 1 / 2f
+//                    * 200);
+////            // tmp sina 即menu item的纵坐标
+//            top = mRingRadius
+//                    / 1
+//                    + (int) Math.round(tmp
+//                    * Math.sin(Math.toRadians(mStartAngle)) - 1 / 2f
+//                    * 200);
+////
+//            child.layout(left, top, left + 200, top + 200);
+//            // 叠加尺寸
+//            mStartAngle += angleDelay;
+
+//            offsetAndScaleButtons();
+//        }
     }
 
     private void initLayout(@NonNull Context context) {
