@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="alpha_major">联调主</string>
+    <string name="alpha_minor">联调次</string>
+    <string name="beta_major">测试主</string>
+    <string name="beta_minor">测试次</string>
+    <string name="pre_official">准生产</string>
+    <string name="official">生产</string>
+
+
+
+</resources>

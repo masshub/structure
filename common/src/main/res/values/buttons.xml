@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <array name="icons" tools:ignore="MissingDefaultResource">
+        <item>@drawable/ic_home_white_24dp</item>
+        <item>@drawable/ic_search_white_24dp</item>
+        <item>@drawable/ic_notifications_white_24dp</item>
+        <item>@drawable/ic_settings_white_24dp</item>
+        <item>@drawable/ic_place_white_24dp</item>
+    </array>
+    <array name="colors" tools:ignore="MissingDefaultResource">
+        <item>@android:color/holo_blue_light</item>
+        <item>@android:color/holo_green_dark</item>
+        <item>@android:color/holo_red_light</item>
+        <item>@android:color/holo_purple</item>
+        <item>@android:color/holo_orange_light</item>
+        <item>@color/color_1bd1a5</item>
+    </array>
+
+    <array name="titles" tools:ignore="MissingDefaultResource">
+        <item>@string/alpha_major</item>
+        <item>@string/alpha_minor</item>
+        <item>@string/beta_major</item>
+        <item>@string/beta_minor</item>
+        <item>@string/pre_official</item>
+        <item>@string/official</item>
+    </array>
+
+
+</resources>
