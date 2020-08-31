@@ -75,16 +75,7 @@ public class CircleMenuView extends FrameLayout {
     private List<Integer> mButtonTitles = new ArrayList<>();
     private List<Integer> mButtonColors = new ArrayList<>();
 
-    private float mLastX;
-    private float mLastY;
-    private AutoFlingRunnable mFlingRunnable;
-    private boolean isFling;
-    private double mStartAngle = 0;
-    private static final int FLINGABLE_VALUE = 300;
-    private long mDownTime;
-    private float mTmpAngle;
-    private int mFlingableValue = FLINGABLE_VALUE;
-    private int childCount;
+
 
 
     /**
@@ -305,7 +296,6 @@ public class CircleMenuView extends FrameLayout {
             final int[] colorsIds = getResources().getIntArray(colorArrayId);
             try {
                 final int buttonsCount = Math.min(mIcons ? iconsIds.length() : titleIds.length(), colorsIds.length);
-                childCount = buttonsCount;
                 icons = new ArrayList<>(buttonsCount);
                 colors = new ArrayList<>(buttonsCount);
                 titles = new ArrayList<>(buttonsCount);
@@ -388,40 +378,6 @@ public class CircleMenuView extends FrameLayout {
         lp.width = right - left;
         lp.height = bottom - top;
 
-
-        // 根据menu item的个数，计算角度
-        // 根据menu item的个数，计算角度
-//        float angleDelay = 360 / (getChildCount() - 1);
-//
-//        // 遍历去设置menuitem的位置
-//        for (int i = 0; i < childCount; i++)
-//        {
-//            final View child = mButtons.get(i);
-//
-//            mStartAngle %= 360;
-//
-//            // 计算，中心点到menu item中心的距离
-//            float tmp = mRingRadius / 1f - 200 / 2 - 0;
-////
-////            // tmp cosa 即menu item中心点的横坐标
-//            left = mRingRadius
-//                    / 1
-//                    + (int) Math.round(tmp
-//                    * Math.cos(Math.toRadians(mStartAngle)) - 1 / 2f
-//                    * 200);
-////            // tmp sina 即menu item的纵坐标
-//            top = mRingRadius
-//                    / 1
-//                    + (int) Math.round(tmp
-//                    * Math.sin(Math.toRadians(mStartAngle)) - 1 / 2f
-//                    * 200);
-////
-//            child.layout(left, top, left + 200, top + 200);
-//            // 叠加尺寸
-//            mStartAngle += angleDelay;
-
-//            offsetAndScaleButtons();
-//        }
     }
 
     private void initLayout(@NonNull Context context) {
@@ -921,163 +877,5 @@ public class CircleMenuView extends FrameLayout {
         openOrClose(false, animate);
     }
 
-    private class AutoFlingRunnable implements Runnable
-    {
-
-        private float angelPerSecond;
-
-        public AutoFlingRunnable(float velocity)
-        {
-            this.angelPerSecond = velocity;
-        }
-
-        public void run()
-        {
-            // 如果小于20,则停止
-            if ((int) Math.abs(angelPerSecond) < 20)
-            {
-                isFling = false;
-                return;
-            }
-            isFling = true;
-            // 不断改变mStartAngle，让其滚动，/30为了避免滚动太快
-            mStartAngle += (angelPerSecond / 30);
-            // 逐渐减小这个值
-            angelPerSecond /= 1.0666F;
-            postDelayed(this, 30);
-            // 重新布局
-            requestLayout();
-        }
-    }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent event)
-    {
-        float x = event.getX();
-        float y = event.getY();
-
-        // Log.e("TAG", "x = " + x + " , y = " + y);
-
-        switch (event.getAction())
-        {
-            case MotionEvent.ACTION_DOWN:
-
-                mLastX = x;
-                mLastY = y;
-                mDownTime = System.currentTimeMillis();
-                mTmpAngle = 0;
-
-                // 如果当前已经在快速滚动
-                if (isFling)
-                {
-                    // 移除快速滚动的回调
-                    removeCallbacks(mFlingRunnable);
-                    isFling = false;
-                    return true;
-                }
-
-                break;
-            case MotionEvent.ACTION_MOVE:
-
-                /**
-                 * 获得开始的角度
-                 */
-                float start = getAngle(mLastX, mLastY);
-                /**
-                 * 获得当前的角度
-                 */
-                float end = getAngle(x, y);
-
-                // Log.e("TAG", "start = " + start + " , end =" + end);
-                // 如果是一、四象限，则直接end-start，角度值都是正值
-                if (getQuadrant(x, y) == 1 || getQuadrant(x, y) == 4)
-                {
-                    mStartAngle += end - start;
-                    mTmpAngle += end - start;
-                } else
-                // 二、三象限，色角度值是付值
-                {
-                    mStartAngle += start - end;
-                    mTmpAngle += start - end;
-                }
-                // 重新布局
-                requestLayout();
-
-                mLastX = x;
-                mLastY = y;
-
-                break;
-            case MotionEvent.ACTION_UP:
-
-                // 计算，每秒移动的角度
-                float anglePerSecond = mTmpAngle * 1000
-                        / (System.currentTimeMillis() - mDownTime);
-
-                // Log.e("TAG", anglePrMillionSecond + " , mTmpAngel = " +
-                // mTmpAngle);
-
-                // 如果达到该值认为是快速移动
-                if (Math.abs(anglePerSecond) > mFlingableValue && !isFling)
-                {
-                    // post一个任务，去自动滚动
-                    post(mFlingRunnable = new AutoFlingRunnable(anglePerSecond));
-
-                    return true;
-                }
-
-                // 如果当前旋转角度超过NOCLICK_VALUE屏蔽点击
-                if (Math.abs(mTmpAngle) > NOCLICK_VALUE)
-                {
-                    return true;
-                }
-
-                break;
-        }
-        return super.dispatchTouchEvent(event);
-    }
-
-    /**
-     * 主要为了action_down时，返回true
-     */
-    @Override
-    public boolean onTouchEvent(MotionEvent event)
-    {
-        return true;
-    }
-
-    /**
-     * 根据触摸的位置，计算角度
-     *
-     * @param xTouch
-     * @param yTouch
-     * @return
-     */
-    private float getAngle(float xTouch, float yTouch)
-    {
-        double x = xTouch - (mRingRadius / 2d);
-        double y = yTouch - (mRingRadius / 2d);
-        return (float) (Math.asin(y / Math.hypot(x, y)) * 180 / Math.PI);
-    }
-
-    /**
-     * 根据当前位置计算象限
-     *
-     * @param x
-     * @param y
-     * @return
-     */
-    private int getQuadrant(float x, float y)
-    {
-        int tmpX = (int) (x - mRingRadius / 2);
-        int tmpY = (int) (y - mRingRadius / 2);
-        if (tmpX >= 0)
-        {
-            return tmpY >= 0 ? 4 : 1;
-        } else
-        {
-            return tmpY >= 0 ? 3 : 2;
-        }
-
-    }
 
 }
