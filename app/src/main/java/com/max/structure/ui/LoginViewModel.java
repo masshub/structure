@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
 import androidx.databinding.ObservableInt;
 
+import com.max.common.base.BaseResponse;
 import com.max.common.base.BaseViewModel;
 import com.max.common.binding.command.BindingAction;
 import com.max.common.binding.command.BindingCommand;
@@ -16,12 +17,15 @@ import com.max.common.bus.event.SingleLiveEvent;
 import com.max.common.utils.RxUtils;
 import com.max.common.utils.ToastUtils;
 import com.max.structure.MainActivity;
+import com.max.structure.data.DemoRepository;
 import com.max.structure.service.TestRepository;
 
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
+import io.reactivex.observers.DisposableObserver;
 
-public class LoginViewModel extends BaseViewModel<TestRepository> {
+public class LoginViewModel extends BaseViewModel<DemoRepository> {
+    private DemoRepository mRepository;
     //用户名的绑定
     public ObservableField<String> userName = new ObservableField<>("");
     //密码的绑定
@@ -36,8 +40,9 @@ public class LoginViewModel extends BaseViewModel<TestRepository> {
         public SingleLiveEvent<Boolean> pSwitchEvent = new SingleLiveEvent<>();
     }
 
-    public LoginViewModel(@NonNull Application application, TestRepository repository) {
+    public LoginViewModel(@NonNull Application application, DemoRepository repository) {
         super(application, repository);
+        mRepository = repository;
         //从本地取得数据绑定到View层
         userName.set(model.getUserName());
         password.set(model.getPassword());
@@ -89,6 +94,37 @@ public class LoginViewModel extends BaseViewModel<TestRepository> {
             ToastUtils.showShort("请输入密码！");
             return;
         }
+
+        model.login()
+                .compose(RxUtils.schedulersTransformer())
+                .doOnSubscribe(this)
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        // 请求开始
+
+                    }
+                }).subscribe(new DisposableObserver<BaseResponse<LoginBean>>() {
+            @Override
+            public void onNext(BaseResponse<LoginBean> response) {
+                // 请求成功
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                // 请求失败
+
+            }
+
+            @Override
+            public void onComplete() {
+                // 请求完成
+
+            }
+        });
+
+
         //RaJava模拟登录
         addSubscribe(model.login()
                 .compose(RxUtils.schedulersTransformer()) //线程调度
@@ -118,10 +154,6 @@ public class LoginViewModel extends BaseViewModel<TestRepository> {
     public void onDestroy() {
         super.onDestroy();
     }
-
-
-
-
 
 
 }

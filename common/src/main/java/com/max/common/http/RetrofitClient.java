@@ -69,14 +69,16 @@ public class RetrofitClient {
         Map<String,String> header = new HashMap<>();
 
         if (url.contains("token/evict") || url.contains("sms/code") || url.contains("mars-serving-web/api/setting/app")) {
-            //退出登陆 发送验证码  不需要head
+            // 退出登陆 发送验证码  不需要head
+
+        } else {
+            // 退出登陆 发送验证码  不需要head
             headers.put("deviceId", PhoneUtils.getDeviceId(App.mApp));
             headers.put("versionCode", "" + AppUtils.getVersionCode(App.mApp));
             headers.put("remoteip",AppUtils.getLocalIpV4Address());
             headers.put("Connection","close");
             headers.put("districtId","334128");
             headers.put("Authorization","334128");
-        } else {
             if (StringUtils.isBlank(header.get("Authorization"))) {
                 headers.put("Authorization","334128");
             }
@@ -94,7 +96,7 @@ public class RetrofitClient {
         }
 
         retrofit = new Retrofit.Builder()
-                .baseUrl(url)
+                .baseUrl(new BaseApi().getAUTH_HOST())
                 .client(HttpClient.getInstance(headers))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(ScalarsConverterFactory.create())

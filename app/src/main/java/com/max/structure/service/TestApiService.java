@@ -1,6 +1,7 @@
 package com.max.structure.service;
 
 import com.max.common.base.BaseResponse;
+import com.max.structure.ui.LoginBean;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -11,6 +12,6 @@ import retrofit2.http.GET;
  */
 public interface TestApiService {
     @GET("action/apiv2/banner?catalog=1")
-    Observable<BaseResponse<String>> demoGet();
+    Observable<BaseResponse<LoginBean>> demoGet();
 
 }

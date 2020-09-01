@@ -42,6 +42,9 @@ public abstract class BaseActivity<VM extends BaseViewModel> extends AppCompatAc
         initViewDataBinding(savedInstanceState);
         //私有的ViewModel与View的契约事件回调逻辑
         registorUIChangeLiveDataCallBack();
+        setContentView(getLayoutId());
+
+        initView();
         //页面数据初始化方法
         initData();
         //页面事件监听的方法，一般用于ViewModel层转到View层的事件注册
@@ -49,6 +52,10 @@ public abstract class BaseActivity<VM extends BaseViewModel> extends AppCompatAc
         //注册RxBus
         viewModel.registerRxBus();
     }
+
+    protected abstract void initView();
+
+    protected abstract int getLayoutId();
 
     @Override
     protected void onDestroy() {

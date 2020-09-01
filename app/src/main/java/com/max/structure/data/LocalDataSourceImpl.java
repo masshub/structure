@@ -1,6 +1,6 @@
 package com.max.structure.data;
 
-class LocalDataSourceImpl implements LocalDataSource {
+public class LocalDataSourceImpl implements LocalDataSource {
 
     private volatile static LocalDataSourceImpl INSTANCE = null;
 

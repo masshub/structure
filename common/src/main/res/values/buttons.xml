@@ -25,5 +25,14 @@
         <item>@string/official</item>
     </array>
 
+    <array name="titles_en" tools:ignore="MissingDefaultResource">
+        <item>@string/alpha_major_en</item>
+        <item>@string/alpha_minor_en</item>
+        <item>@string/beta_major_en</item>
+        <item>@string/beta_minor_en</item>
+        <item>@string/pre_official_en</item>
+        <item>@string/official_en</item>
+    </array>
+
 
 </resources>

@@ -8,6 +8,13 @@
     <string name="pre_official">准生产</string>
     <string name="official">生产</string>
 
+    <string name="alpha_major_en">ALPHA_MAJOR</string>
+    <string name="alpha_minor_en">ALPHA_MINOR</string>
+    <string name="beta_major_en">BETA_MAJOR</string>
+    <string name="beta_minor_en">BETA_MINOR</string>
+    <string name="pre_official_en">PRE_OFFICIAL</string>
+    <string name="official_en">OFFICIAL</string>
+
 
 
 </resources>

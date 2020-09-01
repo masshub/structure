@@ -1,24 +1,16 @@
 package com.max.common.ui;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.max.common.R;
-import com.max.common.R2;
+import com.max.common.http.BaseApi;
 import com.max.common.ui.custom.circle_menu.CircleMenuView;
-import com.max.common.utils.ToastUtils;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 
 /**
@@ -27,6 +19,7 @@ import butterknife.OnClick;
  */
 public class ChoiceAddressActivity extends AppCompatActivity {
     private CircleMenuView mCircleMenuView;
+    private String environment;
 
 
     @Override
@@ -62,9 +55,13 @@ public class ChoiceAddressActivity extends AppCompatActivity {
                 Log.d("D", "onButtonClickAnimationStart| index: " + index);
             }
 
+            @SuppressLint("ResourceType")
             @Override
             public void onButtonClickAnimationEnd(@NonNull CircleMenuView view, int index) {
                 Log.d("D", "onButtonClickAnimationEnd| index: " + index);
+                environment = getResources().getStringArray(R.array.titles_en)[index];
+                Log.d("D", "Environment | index: " + environment);
+                BaseApi baseApi = new BaseApi(environment);
             }
 
             @Override

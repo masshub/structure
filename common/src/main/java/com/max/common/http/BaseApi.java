@@ -5,22 +5,24 @@ package com.max.common.http;
  * Description:
  */
 public class BaseApi {
-    private  String AGREEMENT_HOST;
-    private  String CREDIT_HOST;
-    private  String SHOP_HOST;
-    private  String BASE_HOST;
-    private  String AUTH_HOST;
-    private  String BASE_NEW_HOST;
-    private  String APP_OAUTH2_CLIENT_ID;
-    private  String APP_OAUTH2_CLIENT_SECRET;
-    private  String LOG_CAT;
-    private  String POINT;
-    private  String TCP;
-    private  String TIM_SDKAPPID;
+    private String AGREEMENT_HOST;
+    private String CREDIT_HOST;
+    private String SHOP_HOST;
+    private String BASE_HOST;
+    private String AUTH_HOST;
+    private String BASE_NEW_HOST;
+    private String APP_OAUTH2_CLIENT_ID;
+    private String APP_OAUTH2_CLIENT_SECRET;
+    private String LOG_CAT;
+    private String POINT;
+    private String TCP;
+    private String TIM_SDKAPPID;
 
 
     public BaseApi(String environment) {
         CurrentApiConfig(environment);
+    }
+    public BaseApi() {
     }
 
     public String getAGREEMENT_HOST() {
