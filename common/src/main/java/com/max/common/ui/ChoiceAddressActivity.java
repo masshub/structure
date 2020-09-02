@@ -29,10 +29,14 @@ public class ChoiceAddressActivity extends AppCompatActivity {
         setContentView(R.layout.activity_choice_address);
 
         mCircleMenuView = findViewById(R.id.cmv_menu);
-        try {
-            BaseApi.setEnvironment(SPUtils.getInstance().getString("environment"));
-        } catch (Exception e) {
-            e.printStackTrace();
+        if(SPUtils.getInstance().getString("environment") != null) {
+            try {
+                BaseApi.setEnvironment(SPUtils.getInstance().getString("environment"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            mCircleMenuView.setmTitle(SPUtils.getInstance().getString("environment"));
         }
 
         mCircleMenuView.setEventListener(new CircleMenuView.EventListener(){

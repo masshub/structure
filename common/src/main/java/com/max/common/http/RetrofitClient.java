@@ -10,6 +10,7 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.max.common.App;
+import com.max.common.base.BaseApplication;
 import com.max.common.constant.GlobalConfig;
 import com.max.common.utils.AppUtils;
 import com.max.common.utils.PhoneUtils;
@@ -70,18 +71,21 @@ public class RetrofitClient {
 
         if (url.contains("token/evict") || url.contains("sms/code") || url.contains("mars-serving-web/api/setting/app")) {
             // 退出登陆 发送验证码  不需要head
+            baseUrl = BaseApi.AUTH_HOST;
+
 
         } else {
             // 退出登陆 发送验证码  不需要head
-            headers.put("deviceId", PhoneUtils.getDeviceId(App.mApp));
-            headers.put("versionCode", "" + AppUtils.getVersionCode(App.mApp));
-            headers.put("remoteip",AppUtils.getLocalIpV4Address());
-            headers.put("Connection","close");
-            headers.put("districtId","334128");
-            headers.put("Authorization","334128");
+            header.put("deviceId", PhoneUtils.getDeviceId(BaseApplication.getInstance().getApplicationContext()));
+            header.put("versionCode", "" + AppUtils.getVersionCode(BaseApplication.getInstance().getApplicationContext()));
+//            header.put("remoteip",AppUtils.getLocalIpV4Address());
+            header.put("Connection","close");
+            header.put("districtId","330104");
+            header.put("Authorization","334128");
             if (StringUtils.isBlank(header.get("Authorization"))) {
                 headers.put("Authorization","334128");
             }
+            baseUrl = BaseApi.AUTH_HOST;
         }
 
 
@@ -96,7 +100,7 @@ public class RetrofitClient {
         }
 
         retrofit = new Retrofit.Builder()
-                .baseUrl(BaseApi.BASE_HOST)
+                .baseUrl(baseUrl)
                 .client(HttpClient.getInstance(headers))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(ScalarsConverterFactory.create())

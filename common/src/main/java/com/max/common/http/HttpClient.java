@@ -5,6 +5,7 @@ import android.content.Context;
 import android.provider.Settings;
 
 import com.max.common.App;
+import com.max.common.base.BaseApplication;
 import com.max.common.constant.GlobalConfig;
 import com.max.common.http.cookie.CookieJarImpl;
 import com.max.common.http.cookie.PersistentCookieStore;
@@ -34,7 +35,7 @@ import okhttp3.internal.platform.Platform;
  * Description:
  */
 public class HttpClient {
-    private static Context mContext = App.mApp;
+    private static Context mContext = BaseApplication.getInstance();
     private static final int DEFAULT_TIMEOUT = 20;
     private static final int CACHE_TIMEOUT = 64 * 1024 * 1024;
     private static Cache cache = null;

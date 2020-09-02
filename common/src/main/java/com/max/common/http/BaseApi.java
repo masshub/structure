@@ -13,8 +13,8 @@ public class BaseApi {
     public static final String AGREEMENT_HOST = "";
     public static final String CREDIT_HOST = "";
     public static final String SHOP_HOST = "";
-    public static final String BASE_HOST ="";
-    public static final String AUTH_HOST = "";
+    public static final String BASE_HOST ="https://api-t.zhilunkeji.com/";
+    public static final String AUTH_HOST = "https://auth-t.zhilunkeji.com/";
     public static final String BASE_NEW_HOST = "";
     public static final String APP_OAUTH2_CLIENT_ID = "MOBILE_SERVICE_CAR";
     public static final String APP_OAUTH2_CLIENT_SECRET = "134805dbeb286af9754c539823dbf128";
@@ -108,10 +108,10 @@ public class BaseApi {
             modify("APP_OAUTH2_CLIENT_SECRET","134805dbeb286af9754c539823dbf128");
 
 
-        } else if (Environment.PRE_OFFICIAL.equals(environment)) {
+        } else if (Environment.PRE_OFFICIAL.toString().equals(environment)) {
             // 准生产
 
-            modify("LOG_CAT",true);
+            modify("LOG_CAT","true");
             modify("TIM_SDKAPPID","1400400811");
             modify("TCP","tcp-t.zhilunkeji.com:11883");
             modify("POINT","http://point.zhilun-dvpt.com");

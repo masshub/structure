@@ -32,16 +32,40 @@ public abstract class BaseActivity<VM extends BaseViewModel> extends AppCompatAc
     protected VM viewModel;
     private int viewModelId;
 //    private MaterialDialog dialog;
+    
+    
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+//        viewModel = initViewModel();
+//        if (viewModel == null) {
+//            Class modelClass;
+//            Type type = getClass().getGenericSuperclass();
+//            if (type instanceof ParameterizedType) {
+//                modelClass = (Class) ((ParameterizedType) type).getActualTypeArguments()[1];
+//            } else {
+//                //如果没有指定泛型参数，则默认使用BaseViewModel
+//                modelClass = BaseViewModel.class;
+//            }
+//            viewModel = (VM) createViewModel(this, modelClass);
+//        }
+        //关联ViewModel
+//        binding.setVariable(viewModelId, viewModel);
+        //支持LiveData绑定xml，数据改变，UI自动会更新
+        //让ViewModel拥有View的生命周期感应
+//        getLifecycle().addObserver(viewModel);
+        //注入RxLifecycle生命周期
+//        viewModel.injectLifecycleProvider(this);
         //页面接受的参数方法
         initParam();
         //私有的初始化Databinding和ViewModel方法
-        initViewDataBinding(savedInstanceState);
+//        initViewDataBinding(savedInstanceState);
         //私有的ViewModel与View的契约事件回调逻辑
-        registorUIChangeLiveDataCallBack();
+//        registorUIChangeLiveDataCallBack();
         setContentView(getLayoutId());
 
         initView();
@@ -49,9 +73,15 @@ public abstract class BaseActivity<VM extends BaseViewModel> extends AppCompatAc
         initData();
         //页面事件监听的方法，一般用于ViewModel层转到View层的事件注册
         initViewObservable();
+
+        if (viewModel == null) {
+            viewModel = getViewModel();
+        }
         //注册RxBus
-        viewModel.registerRxBus();
+//        viewModel.registerRxBus();
     }
+
+    protected abstract VM getViewModel();
 
     protected abstract void initView();
 

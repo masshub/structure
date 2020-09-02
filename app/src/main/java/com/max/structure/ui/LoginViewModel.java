@@ -18,19 +18,16 @@ import com.max.common.binding.command.BindingCommand;
 import com.max.common.binding.command.BindingConsumer;
 import com.max.common.bus.event.SingleLiveEvent;
 import com.max.common.http.BaseApi;
+import com.max.common.utils.LogUtil;
 import com.max.common.utils.MD5Utils;
 import com.max.common.utils.PhoneUtils;
 import com.max.common.utils.RxUtils;
 import com.max.common.utils.ToastUtils;
-import com.max.structure.MainActivity;
-import com.max.structure.R;
 import com.max.structure.data.DemoRepository;
-import com.max.structure.service.TestRepository;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.internal.Utils;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.observers.DisposableObserver;
@@ -123,24 +120,28 @@ public class LoginViewModel extends BaseViewModel<DemoRepository> {
                     @Override
                     public void accept(Disposable disposable) throws Exception {
                         // 请求开始
+                        LogUtil.d("请求开始");
 
                     }
                 }).subscribe(new DisposableObserver<BaseResponse<LoginBean>>() {
             @Override
             public void onNext(BaseResponse<LoginBean> response) {
                 // 请求成功
+                LogUtil.d("请求成功");
 
             }
 
             @Override
             public void onError(Throwable e) {
                 // 请求失败
+                LogUtil.d("请求失败");
 
             }
 
             @Override
             public void onComplete() {
                 // 请求完成
+                LogUtil.d("请求完成");
 
             }
         });

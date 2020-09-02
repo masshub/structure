@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
 
 import com.max.common.App;
+import com.max.common.base.BaseApplication;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -16,6 +17,7 @@ public final class SPUtils {
 
     private static Map<String, SPUtils> sSPMap = new HashMap<>();
     private SharedPreferences sp;
+    private static Context mContent;
 
     /**
      * 获取SP实例
@@ -42,8 +44,13 @@ public final class SPUtils {
         return sp;
     }
 
+    public static void init(Context context){
+        mContent = context;
+
+    }
+
     private SPUtils(final String spName) {
-        sp = App.mApp.getSharedPreferences(spName, Context.MODE_PRIVATE);
+        sp = mContent.getSharedPreferences(spName, Context.MODE_PRIVATE);
     }
 
     /**
