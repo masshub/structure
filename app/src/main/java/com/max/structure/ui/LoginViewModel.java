@@ -2,24 +2,35 @@ package com.max.structure.ui;
 
 import android.app.Application;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.view.View;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
 import androidx.databinding.ObservableInt;
 
+import com.max.common.App;
 import com.max.common.base.BaseResponse;
 import com.max.common.base.BaseViewModel;
 import com.max.common.binding.command.BindingAction;
 import com.max.common.binding.command.BindingCommand;
 import com.max.common.binding.command.BindingConsumer;
 import com.max.common.bus.event.SingleLiveEvent;
+import com.max.common.http.BaseApi;
+import com.max.common.utils.MD5Utils;
+import com.max.common.utils.PhoneUtils;
 import com.max.common.utils.RxUtils;
 import com.max.common.utils.ToastUtils;
 import com.max.structure.MainActivity;
+import com.max.structure.R;
 import com.max.structure.data.DemoRepository;
 import com.max.structure.service.TestRepository;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import butterknife.internal.Utils;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.observers.DisposableObserver;
@@ -78,24 +89,34 @@ public class LoginViewModel extends BaseViewModel<DemoRepository> {
     public BindingCommand loginOnClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
-            login();
+//            login();
         }
     });
 
     /**
      * 网络模拟一个登陆操作
      **/
-    private void login() {
-        if (TextUtils.isEmpty(userName.get())) {
+    public void login(EditText userName,EditText password) {
+        if (TextUtils.isEmpty(userName.getText().toString().trim())) {
             ToastUtils.showShort("请输入账号！");
             return;
         }
-        if (TextUtils.isEmpty(password.get())) {
+        if (TextUtils.isEmpty(password.getText().toString().trim())) {
             ToastUtils.showShort("请输入密码！");
             return;
         }
 
-        model.login()
+        Map<String, String> header = new HashMap<>();
+        header.put("Authorization",
+                "Basic " + Base64.encodeToString((BaseApi.APP_OAUTH2_CLIENT_ID + ":" + BaseApi.APP_OAUTH2_CLIENT_SECRET).getBytes(), Base64.URL_SAFE | Base64.NO_WRAP | Base64.NO_PADDING));
+        Map<String, String> params = new HashMap<>();
+        params.put("mobile", userName.getText().toString().trim());
+        params.put("grant_type","store_password");
+        params.put("deviceId", PhoneUtils.getDeviceId(App.mApp));
+        params.put("password", MD5Utils.getMD5(password.getText().toString().trim()));
+
+
+        model.login(header, params)
                 .compose(RxUtils.schedulersTransformer())
                 .doOnSubscribe(this)
                 .doOnSubscribe(new Consumer<Disposable>() {
@@ -124,29 +145,6 @@ public class LoginViewModel extends BaseViewModel<DemoRepository> {
             }
         });
 
-
-        //RaJava模拟登录
-        addSubscribe(model.login()
-                .compose(RxUtils.schedulersTransformer()) //线程调度
-                .doOnSubscribe(new Consumer<Disposable>() {
-                    @Override
-                    public void accept(Disposable disposable) throws Exception {
-                        showDialog();
-                    }
-                })
-                .subscribe(new Consumer<Object>() {
-                    @Override
-                    public void accept(Object o) throws Exception {
-                        dismissDialog();
-                        //保存账号密码
-                        model.saveUserName(userName.get());
-                        model.savePassword(password.get());
-                        //进入DemoActivity页面
-                        startActivity(MainActivity.class);
-                        //关闭页面
-                        finish();
-                    }
-                }));
 
     }
 

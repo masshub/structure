@@ -25,6 +25,7 @@ public class LoginActivity extends BaseActivity<LoginViewModel> {
         return ViewModelProviders.of(this, factory).get(LoginViewModel.class);
     }
 
+
     @Override
     protected void initView() {
         mUserName = findViewById(R.id.et_username);
@@ -34,6 +35,7 @@ public class LoginActivity extends BaseActivity<LoginViewModel> {
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                viewModel.login();
 
             }
         });

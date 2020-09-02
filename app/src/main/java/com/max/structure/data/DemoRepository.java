@@ -8,6 +8,8 @@ import com.max.common.base.BaseModel;
 import com.max.common.base.BaseResponse;
 import com.max.structure.ui.LoginBean;
 
+import java.util.Map;
+
 import io.reactivex.Observable;
 
 /**
@@ -45,8 +47,8 @@ public class DemoRepository extends BaseModel implements HttpDataSource, LocalDa
 
 
     @Override
-    public Observable<BaseResponse<LoginBean>> login() {
-        return mHttpDataSource.login();
+    public Observable<BaseResponse<LoginBean>> login(Map<String,String> headers, Map<String,String> params) {
+        return mHttpDataSource.login(headers, params);
     }
 
     @Override

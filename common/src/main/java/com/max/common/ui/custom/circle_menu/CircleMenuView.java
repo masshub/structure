@@ -76,7 +76,13 @@ public class CircleMenuView extends FrameLayout {
     private List<Integer> mButtonColors = new ArrayList<>();
 
 
+    public String getmTitle() {
+        return mTitle;
+    }
 
+    public void setmTitle(String mTitle) {
+        this.mTitle = mTitle;
+    }
 
     /**
      * 如果移动角度达到该值，则屏蔽点击
@@ -134,7 +140,7 @@ public class CircleMenuView extends FrameLayout {
          * @param view        - current CircleMenuView instance.
          * @param buttonIndex - clicked button zero-based index.
          */
-        public void onButtonClickAnimationEnd(@NonNull CircleMenuView view, int buttonIndex) {
+        public void onButtonClickAnimationEnd(@NonNull CircleMenuView view, int buttonIndex) throws Exception {
         }
 
         /**
@@ -200,7 +206,11 @@ public class CircleMenuView extends FrameLayout {
                 public void onAnimationEnd(Animator animation) {
                     mClosedState = true;
                     if (mListener != null) {
-                        mListener.onButtonClickAnimationEnd(CircleMenuView.this, mButtons.indexOf(view));
+                        try {
+                            mListener.onButtonClickAnimationEnd(CircleMenuView.this, mButtons.indexOf(view));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                         mTitle = getResources().getString(mButtonTitles.get(mButtons.indexOf(view)));
 //                        mMenuButton.setBackground(getResources().getDrawable(R.drawable.circle_button_shape));
                         mMenuButton.setBackgroundTintList(ColorStateList.valueOf(mButtonColors.get(mButtons.indexOf(view))));

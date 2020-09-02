@@ -5,6 +5,7 @@ import com.max.structure.service.DemoApiService;
 import com.max.structure.service.TestApiService;
 import com.max.structure.ui.LoginBean;
 
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -29,9 +30,8 @@ public class HttpDataSourceImpl implements HttpDataSource{
     }
 
     @Override
-    public Observable<BaseResponse<LoginBean>> login() {
-//        return Observable.just(new Object()).delay(3, TimeUnit.SECONDS);
-        return apiService.demoGet();
+    public Observable<BaseResponse<LoginBean>> login(Map<String,String> headers,Map<String,String> params) {
+        return apiService.login(headers,params);
     }
 
     @Override

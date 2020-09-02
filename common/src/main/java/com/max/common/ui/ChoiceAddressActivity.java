@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.max.common.R;
 import com.max.common.http.BaseApi;
 import com.max.common.ui.custom.circle_menu.CircleMenuView;
+import com.max.common.utils.SPUtils;
 
 
 /**
@@ -28,6 +29,11 @@ public class ChoiceAddressActivity extends AppCompatActivity {
         setContentView(R.layout.activity_choice_address);
 
         mCircleMenuView = findViewById(R.id.cmv_menu);
+        try {
+            BaseApi.setEnvironment(SPUtils.getInstance().getString("environment"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         mCircleMenuView.setEventListener(new CircleMenuView.EventListener(){
             @Override
@@ -57,11 +63,11 @@ public class ChoiceAddressActivity extends AppCompatActivity {
 
             @SuppressLint("ResourceType")
             @Override
-            public void onButtonClickAnimationEnd(@NonNull CircleMenuView view, int index) {
+            public void onButtonClickAnimationEnd(@NonNull CircleMenuView view, int index) throws Exception {
                 Log.d("D", "onButtonClickAnimationEnd| index: " + index);
                 environment = getResources().getStringArray(R.array.titles_en)[index];
                 Log.d("D", "Environment | index: " + environment);
-                BaseApi baseApi = new BaseApi(environment);
+                BaseApi.setEnvironment(environment);
             }
 
             @Override

@@ -96,7 +96,7 @@ public class RetrofitClient {
         }
 
         retrofit = new Retrofit.Builder()
-                .baseUrl(new BaseApi().getAUTH_HOST())
+                .baseUrl(BaseApi.BASE_HOST)
                 .client(HttpClient.getInstance(headers))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(ScalarsConverterFactory.create())
