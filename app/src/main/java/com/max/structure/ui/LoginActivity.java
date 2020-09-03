@@ -33,13 +33,6 @@ public class LoginActivity extends BaseActivity<LoginViewModel> {
         }
     }
 
-//    @Override
-//    public LoginViewModel initViewModel() {
-//        AppViewModelFactory factory = AppViewModelFactory.getInstance(getApplication());
-//        return ViewModelProviders.of(this, factory).get(LoginViewModel.class);
-//    }
-
-
     @Override
     protected LoginViewModel getViewModel() {
         AppViewModelFactory factory = AppViewModelFactory.getInstance(getApplication());
@@ -62,6 +55,7 @@ public class LoginActivity extends BaseActivity<LoginViewModel> {
         });
 
     }
+
 
     @Override
     protected int getLayoutId() {

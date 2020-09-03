@@ -33,11 +33,61 @@ public class BaseApi {
         mEnvironment = environment;
         SPUtils.getInstance().put("environment",environment);
         currentApiConfig(environment);
-
-
     }
 
-//    public BaseApi(String environment) {
+    public static String getAgreementHost() {
+        return AGREEMENT_HOST;
+    }
+
+    public static String getCreditHost() {
+        return CREDIT_HOST;
+    }
+
+    public static String getShopHost() {
+        return SHOP_HOST;
+    }
+
+    public static String getBaseHost() {
+        return BASE_HOST;
+    }
+
+    public static String getAuthHost() {
+        return AUTH_HOST;
+    }
+
+    public static String getBaseNewHost() {
+        return BASE_NEW_HOST;
+    }
+
+    public static String getAppOauth2ClientId() {
+        return APP_OAUTH2_CLIENT_ID;
+    }
+
+    public static String getAppOauth2ClientSecret() {
+        return APP_OAUTH2_CLIENT_SECRET;
+    }
+
+    public static String getLogCat() {
+        return LOG_CAT;
+    }
+
+    public static String getPOINT() {
+        return POINT;
+    }
+
+    public static String getTCP() {
+        return TCP;
+    }
+
+    public static String getTimSdkappid() {
+        return TIM_SDKAPPID;
+    }
+
+    public static String getmEnvironment() {
+        return mEnvironment;
+    }
+
+    //    public BaseApi(String environment) {
 //        currentApiConfig(environment);
 //    }
 //
@@ -109,19 +159,19 @@ public class BaseApi {
 
 
         } else if (Environment.PRE_OFFICIAL.toString().equals(environment)) {
-            // 准生产
 
-            modify("LOG_CAT","true");
-            modify("TIM_SDKAPPID","1400400811");
-            modify("TCP","tcp-t.zhilunkeji.com:11883");
-            modify("POINT","http://point.zhilun-dvpt.com");
-            modify("BASE_HOST","https://api-t.zhilunkeji.com/");
-            modify("CREDIT_HOST","https://sh-t.zhilunkeji.com/");
-            modify("SHOP_HOST","https://shop-t.zhilunkeji.com/");
-            modify("AUTH_HOST","https://auth-t.zhilunkeji.com/");
-            modify("BASE_NEW_HOST","https://apin-t.zhilunkeji.com/");
-            modify("AGREEMENT_HOST","https://sh.t.zhilun.com/agreement/");
-            modify("APP_OAUTH2_CLIENT_SECRET","134805dbeb286af9754c539823dbf128");
+            // 准生产
+            modify(LOG_CAT,"true");
+            modify(TIM_SDKAPPID,"1400400811");
+            modify(TCP,"tcp-t.zhilunkeji.com:11883");
+            modify(POINT,"http://point.zhilun-dvpt.com");
+            modify(BASE_HOST,"https://api-t.zhilunkeji.com/");
+            modify(CREDIT_HOST,"https://sh-t.zhilunkeji.com/");
+            modify(SHOP_HOST,"https://shop-t.zhilunkeji.com/");
+            modify(AUTH_HOST,"https://auth-t.zhilunkeji.com/");
+            modify(BASE_NEW_HOST,"https://apin-t.zhilunkeji.com/");
+            modify(AGREEMENT_HOST,"https://sh.t.zhilun.com/agreement/");
+            modify(APP_OAUTH2_CLIENT_SECRET,"134805dbeb286af9754c539823dbf128");
 
         } else {
             // 生产
@@ -144,7 +194,10 @@ public class BaseApi {
     }
 
     public static void modify(String fieldName, Object newFieldValue) throws Exception {
-        Field field = new BaseApi().getClass().getDeclaredField(fieldName);
+        BaseApi baseApi = new BaseApi();
+
+        Field field = BaseApi.class.getDeclaredField("LOG_CAT");
+        field.setAccessible(true);
 
         Field modifiersField = Field.class.getDeclaredField("modifiers");
         modifiersField.setAccessible(true); //Field 的 modifiers 是私有的
@@ -154,7 +207,8 @@ public class BaseApi {
             field.setAccessible(true);
         }
 
-        field.set(new BaseApi(), newFieldValue);
+        field.set(baseApi, newFieldValue);
+        modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
     }
 
 
