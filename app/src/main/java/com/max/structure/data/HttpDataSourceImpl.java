@@ -30,7 +30,7 @@ public class HttpDataSourceImpl implements HttpDataSource{
     }
 
     @Override
-    public Observable<BaseResponse<LoginBean>> login(Map<String,String> headers,Map<String,String> params) {
+    public Observable<LoginBean> login(Map<String,String> headers,Map<String,String> params) {
         return apiService.login(headers,params);
     }
 

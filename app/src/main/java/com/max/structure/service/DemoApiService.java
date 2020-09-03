@@ -28,5 +28,5 @@ public interface DemoApiService {
 
     @FormUrlEncoded
     @POST(value = BaseApi.AUTH_HOST + "oauth/token")
-    Observable<BaseResponse<LoginBean>> login(@HeaderMap Map<String, String> headers, @FieldMap Map<String, String> params);
+    Observable<LoginBean> login(@HeaderMap Map<String, String> headers, @FieldMap Map<String, String> params);
 }

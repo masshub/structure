@@ -8,7 +8,6 @@ import android.widget.LinearLayout;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.max.common.base.BaseActivity;
-import com.max.common.base.BaseApplication;
 import com.max.common.bus.event.ActivityEvent;
 import com.max.common.http.BaseApi;
 import com.max.common.http.Environment;

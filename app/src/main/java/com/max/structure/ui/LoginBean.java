@@ -95,4 +95,20 @@ public class LoginBean {
     public void setAppType(String appType) {
         this.appType = appType;
     }
+
+    @Override
+    public String toString() {
+        return "LoginBean{" +
+                "access_token='" + access_token + '\'' +
+                ", token_type='" + token_type + '\'' +
+                ", refresh_token='" + refresh_token + '\'' +
+                ", expires_in=" + expires_in +
+                ", scope='" + scope + '\'' +
+                ", wxOpenId=" + wxOpenId +
+                ", telephone='" + telephone + '\'' +
+                ", userType='" + userType + '\'' +
+                ", userId=" + userId +
+                ", appType='" + appType + '\'' +
+                '}';
+    }
 }

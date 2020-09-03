@@ -5,7 +5,7 @@ package com.max.common.constant;
  * Description:
  */
 public class GlobalConfig {
-    public static boolean isDebug = false;
+    public static boolean isDebug = true;
     public static String baseUrl = "https://www.oschina.net/";
 
     public static String environment = "";

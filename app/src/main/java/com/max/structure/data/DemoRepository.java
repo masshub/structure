@@ -47,7 +47,7 @@ public class DemoRepository extends BaseModel implements HttpDataSource, LocalDa
 
 
     @Override
-    public Observable<BaseResponse<LoginBean>> login(Map<String,String> headers, Map<String,String> params) {
+    public Observable<LoginBean> login(Map<String,String> headers, Map<String,String> params) {
         return mHttpDataSource.login(headers, params);
     }
 

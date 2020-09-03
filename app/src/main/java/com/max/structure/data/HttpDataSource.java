@@ -11,7 +11,7 @@ import io.reactivex.Observable;
 public interface HttpDataSource {
 
 
-    Observable<BaseResponse<LoginBean>> login(Map<String,String> headers, Map<String,String> params);
+    Observable<LoginBean> login(Map<String,String> headers, Map<String,String> params);
 
     //模拟上拉加载
     Observable<Object> loadMore();
