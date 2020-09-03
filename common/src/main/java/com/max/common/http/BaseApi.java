@@ -161,17 +161,17 @@ public class BaseApi {
         } else if (Environment.PRE_OFFICIAL.toString().equals(environment)) {
 
             // 准生产
-            modify(LOG_CAT,"true");
-            modify(TIM_SDKAPPID,"1400400811");
-            modify(TCP,"tcp-t.zhilunkeji.com:11883");
-            modify(POINT,"http://point.zhilun-dvpt.com");
-            modify(BASE_HOST,"https://api-t.zhilunkeji.com/");
-            modify(CREDIT_HOST,"https://sh-t.zhilunkeji.com/");
-            modify(SHOP_HOST,"https://shop-t.zhilunkeji.com/");
-            modify(AUTH_HOST,"https://auth-t.zhilunkeji.com/");
-            modify(BASE_NEW_HOST,"https://apin-t.zhilunkeji.com/");
-            modify(AGREEMENT_HOST,"https://sh.t.zhilun.com/agreement/");
-            modify(APP_OAUTH2_CLIENT_SECRET,"134805dbeb286af9754c539823dbf128");
+            modify("LOG_CAT","true");
+            modify("TIM_SDKAPPID","1400400811");
+            modify("TCP","tcp-t.zhilunkeji.com:11883");
+            modify("POINT","http://point.zhilun-dvpt.com");
+            modify("BASE_HOST","https://api-t.zhilunkeji.com/");
+            modify("CREDIT_HOST","https://sh-t.zhilunkeji.com/");
+            modify("SHOP_HOST","https://shop-t.zhilunkeji.com/");
+            modify("AUTH_HOST","https://auth-t.zhilunkeji.com/");
+            modify("BASE_NEW_HOST","https://apin-t.zhilunkeji.com/");
+            modify("AGREEMENT_HOST","https://sh.t.zhilun.com/agreement/");
+            modify("APP_OAUTH2_CLIENT_SECRET","134805dbeb286af9754c539823dbf128");
 
         } else {
             // 生产
@@ -196,7 +196,7 @@ public class BaseApi {
     public static void modify(String fieldName, Object newFieldValue) throws Exception {
         BaseApi baseApi = new BaseApi();
 
-        Field field = BaseApi.class.getDeclaredField("LOG_CAT");
+        Field field = BaseApi.class.getDeclaredField(fieldName);
         field.setAccessible(true);
 
         Field modifiersField = Field.class.getDeclaredField("modifiers");

@@ -14,7 +14,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.max.common.bus.Messenger;
 import com.max.common.bus.event.FragmentEvent;
 import com.trello.rxlifecycle4.LifecycleProvider;
 
@@ -22,10 +21,8 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Map;
 
-public abstract class BaseFragment <V extends ViewDataBinding, VM extends BaseViewModel> extends Fragment implements IBaseView, LifecycleProvider<FragmentEvent> {
-    protected V binding;
+public abstract class BaseFragment<VM extends BaseViewModel> extends Fragment implements IBaseView{
     protected VM viewModel;
-    private int viewModelId;
 //    private MaterialDialog dialog;
 
     @Override
@@ -42,28 +39,25 @@ public abstract class BaseFragment <V extends ViewDataBinding, VM extends BaseVi
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, initContentView(inflater, container, savedInstanceState), container, false);
-        return binding.getRoot();
+        return inflater.inflate(initContentView(inflater, container, savedInstanceState),container,false);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         //解除Messenger注册
-        Messenger.getDefault().unregister(viewModel);
+//        Messenger.getDefault().unregister(viewModel);
         if (viewModel != null) {
             viewModel.removeRxBus();
         }
-        if (binding != null) {
-            binding.unbind();
-        }
+
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //私有的初始化Databinding和ViewModel方法
-        initViewDataBinding();
+        initViewModels();
         //私有的ViewModel与View的契约事件回调逻辑
         registorUIChangeLiveDataCallBack();
         //页面数据初始化方法
@@ -77,8 +71,7 @@ public abstract class BaseFragment <V extends ViewDataBinding, VM extends BaseVi
     /**
      * 注入绑定
      */
-    private void initViewDataBinding() {
-        viewModelId = initVariableId();
+    private void initViewModels() {
         viewModel = initViewModel();
         if (viewModel == null) {
             Class modelClass;
@@ -91,13 +84,12 @@ public abstract class BaseFragment <V extends ViewDataBinding, VM extends BaseVi
             }
             viewModel = (VM) createViewModel(this, modelClass);
         }
-        binding.setVariable(viewModelId, viewModel);
         //支持LiveData绑定xml，数据改变，UI自动会更新
 //        binding.setLifecycleOwner(this);
         //让ViewModel拥有View的生命周期感应
         getLifecycle().addObserver(viewModel);
         //注入RxLifecycle生命周期
-        viewModel.injectLifecycleProvider(this);
+//        viewModel.injectLifecycleProvider(this);
     }
 
     /**
@@ -220,12 +212,6 @@ public abstract class BaseFragment <V extends ViewDataBinding, VM extends BaseVi
      * =====================================================================
      **/
 
-    //刷新布局
-    public void refreshLayout() {
-        if (viewModel != null) {
-            binding.setVariable(viewModelId, viewModel);
-        }
-    }
 
     @Override
     public void initParam() {
@@ -244,7 +230,6 @@ public abstract class BaseFragment <V extends ViewDataBinding, VM extends BaseVi
      *
      * @return BR的id
      */
-    public abstract int initVariableId();
 
     /**
      * 初始化ViewModel

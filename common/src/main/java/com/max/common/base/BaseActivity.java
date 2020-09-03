@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.max.common.bus.Messenger;
 import com.max.common.utils.ToastUtils;
 
 import java.lang.reflect.ParameterizedType;
@@ -73,7 +72,7 @@ public abstract class BaseActivity<VM extends BaseViewModel> extends AppCompatAc
     protected void onDestroy() {
         super.onDestroy();
         //解除Messenger注册
-        Messenger.getDefault().unregister(viewModel);
+//        Messenger.getDefault().unregister(viewModel);
         if (viewModel != null) {
             viewModel.removeRxBus();
         }
