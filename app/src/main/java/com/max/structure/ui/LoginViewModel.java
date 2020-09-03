@@ -88,13 +88,13 @@ public class LoginViewModel extends BaseViewModel<DemoRepository> {
                 }).subscribe(new DisposableObserver<LoginBean>() {
             @Override
             public void onNext(LoginBean response) {
+
                 // 请求成功
                 LogUtil.d("请求成功");
                 LogUtil.d(response.getAccess_token());
                 LogUtil.d(response.getAppType());
                 LogUtil.d(response.getExpires_in());
                 LogUtil.d(response.getRefresh_token());
-
             }
 
             @Override

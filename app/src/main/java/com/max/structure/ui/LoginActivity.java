@@ -2,6 +2,7 @@ package com.max.structure.ui;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -16,7 +17,7 @@ import com.max.structure.R;
 
 public class LoginActivity extends BaseActivity<LoginViewModel> {
     private EditText mUserName, mUserPassword;
-    private LinearLayout mLogin;
+    private Button mLogin;
 
 
     @Override
@@ -45,7 +46,7 @@ public class LoginActivity extends BaseActivity<LoginViewModel> {
     protected void initView() {
         mUserName = findViewById(R.id.et_username);
         mUserPassword = findViewById(R.id.et_password);
-        mLogin = findViewById(R.id.ll_login);
+        mLogin = findViewById(R.id.bt_login);
 
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override

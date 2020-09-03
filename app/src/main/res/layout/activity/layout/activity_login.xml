@@ -121,7 +121,6 @@
             </RelativeLayout>
 
             <LinearLayout
-                android:id="@+id/ll_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -130,6 +129,7 @@
                 android:padding="6dp">
 
                 <Button
+                    android:id="@+id/bt_login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="?selectableItemBackground"

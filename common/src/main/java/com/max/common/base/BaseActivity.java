@@ -26,7 +26,6 @@ import java.util.Map;
 public abstract class BaseActivity<VM extends BaseViewModel> extends AppCompatActivity implements IBaseView {
     protected VM viewModel;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

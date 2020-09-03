@@ -1,10 +1,7 @@
 package com.max.common.http;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.provider.Settings;
 
-import com.max.common.App;
 import com.max.common.base.BaseApplication;
 import com.max.common.constant.GlobalConfig;
 import com.max.common.http.cookie.CookieJarImpl;
@@ -17,11 +14,9 @@ import com.max.common.http.utils.HttpsUtil;
 import com.max.common.utils.LogUtil;
 
 import java.io.File;
-
 import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
 
 import okhttp3.Cache;
 import okhttp3.ConnectionPool;
@@ -71,7 +66,7 @@ public class HttpClient {
                         .log(Platform.INFO) // 打印类型
                         .request("Request") // request的Tag
                         .response("Response")// Response的Tag
-                        .addHeader("log-header", "I am the log request header.") // 添加打印头, 注意 key 和 value 都不能是中文
+                        .addHeader("log-header", "The log request header.") // 添加打印头, 注意 key 和 value 都不能是中文
                         .build()
                 )
                 .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
