@@ -8,19 +8,21 @@ import android.widget.LinearLayout;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.max.common.base.BaseActivity;
-import com.max.common.bus.event.ActivityEvent;
 import com.max.common.http.BaseApi;
 import com.max.common.http.Environment;
 import com.max.structure.AppViewModelFactory;
 import com.max.structure.R;
-import com.trello.rxlifecycle4.LifecycleTransformer;
 
-import io.reactivex.rxjava3.core.Observable;
 
 public class LoginActivity extends BaseActivity<LoginViewModel> {
     private EditText mUserName, mUserPassword;
     private LinearLayout mLogin;
 
+
+    @Override
+    public int getContentView(Bundle savedInstanceState) {
+        return R.layout.activity_login;
+    }
 
     @Override
     public void initParam() {
@@ -32,8 +34,9 @@ public class LoginActivity extends BaseActivity<LoginViewModel> {
         }
     }
 
+
     @Override
-    protected LoginViewModel getViewModel() {
+    public LoginViewModel initViewModel() {
         AppViewModelFactory factory = AppViewModelFactory.getInstance(getApplication());
         return ViewModelProviders.of(this, factory).get(LoginViewModel.class);
     }
@@ -43,7 +46,6 @@ public class LoginActivity extends BaseActivity<LoginViewModel> {
         mUserName = findViewById(R.id.et_username);
         mUserPassword = findViewById(R.id.et_password);
         mLogin = findViewById(R.id.ll_login);
-
 
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,34 +58,5 @@ public class LoginActivity extends BaseActivity<LoginViewModel> {
     }
 
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_login;
-    }
 
-    @Override
-    public int initContentView(Bundle savedInstanceState) {
-        return R.layout.activity_login;
-    }
-
-
-    @Override
-    public int initVariableId() {
-        return 0;
-    }
-
-    @Override
-    public Observable<ActivityEvent> lifecycle() {
-        return null;
-    }
-
-    @Override
-    public <T> LifecycleTransformer<T> bindUntilEvent(ActivityEvent event) {
-        return null;
-    }
-
-    @Override
-    public <T> LifecycleTransformer<T> bindToLifecycle() {
-        return null;
-    }
 }

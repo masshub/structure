@@ -10,6 +10,7 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 
 import com.max.common.bus.event.SingleLiveEvent;
+import com.max.common.utils.LogUtil;
 import com.trello.rxlifecycle4.LifecycleProvider;
 
 import java.lang.ref.WeakReference;
@@ -141,38 +142,47 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
 
     @Override
     public void onAny(LifecycleOwner owner, Lifecycle.Event event) {
+        LogUtil.d("onAny");
     }
 
     @Override
     public void onCreate() {
+        LogUtil.d("onCreate");
     }
 
     @Override
     public void onDestroy() {
+        LogUtil.d("onDestroy");
     }
 
     @Override
     public void onStart() {
+        LogUtil.d("onStart");
     }
 
     @Override
     public void onStop() {
+        LogUtil.d("onStop");
     }
 
     @Override
     public void onResume() {
+        LogUtil.d("onResume");
     }
 
     @Override
     public void onPause() {
+        LogUtil.d("onPause");
     }
 
     @Override
     public void registerRxBus() {
+        LogUtil.d("onAny");
     }
 
     @Override
     public void removeRxBus() {
+        LogUtil.d("onAny");
     }
 
     @Override

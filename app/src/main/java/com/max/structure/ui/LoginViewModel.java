@@ -3,7 +3,6 @@ package com.max.structure.ui;
 import android.app.Application;
 import android.text.TextUtils;
 import android.util.Base64;
-import android.view.View;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
@@ -11,11 +10,7 @@ import androidx.databinding.ObservableField;
 import androidx.databinding.ObservableInt;
 
 import com.max.common.App;
-import com.max.common.base.BaseResponse;
 import com.max.common.base.BaseViewModel;
-import com.max.common.binding.command.BindingAction;
-import com.max.common.binding.command.BindingCommand;
-import com.max.common.binding.command.BindingConsumer;
 import com.max.common.bus.event.SingleLiveEvent;
 import com.max.common.http.BaseApi;
 import com.max.common.utils.LogUtil;
@@ -99,8 +94,6 @@ public class LoginViewModel extends BaseViewModel<DemoRepository> {
                 LogUtil.d(response.getAppType());
                 LogUtil.d(response.getExpires_in());
                 LogUtil.d(response.getRefresh_token());
-                LogUtil.d(response.getTelephone());
-                LogUtil.d(response.getUserId());
 
             }
 
