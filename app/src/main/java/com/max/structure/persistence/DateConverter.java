@@ -6,7 +6,7 @@ import java.util.Date;
 
 /**
  * Created by Maker on 2020/9/3.
- * Description:
+ * Description: Type converters to allow Room to reference complex data types.
  */
 public class DateConverter {
     @TypeConverter
