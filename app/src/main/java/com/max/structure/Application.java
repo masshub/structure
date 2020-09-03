@@ -1,17 +1,27 @@
 package com.max.structure;
 
 import com.max.common.App;
+import com.max.structure.persistence.AppDataBase;
 
 /**
  * Created by Maker on 2020/8/26.
  * Description:
  */
 class Application extends App {
-    public static Application mApplication;
+    private AppExecutors mAppExecutors;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        mApplication = this;
+
+        mAppExecutors = new AppExecutors();
+    }
+
+    public AppDataBase getDatabase() {
+        return AppDataBase.getInstance(this, mAppExecutors);
+    }
+
+    public DataRepository getRepository() {
+        return DataRepository.getInstance(getDatabase());
     }
 }

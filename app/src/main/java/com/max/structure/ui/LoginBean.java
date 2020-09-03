@@ -1,9 +1,13 @@
 package com.max.structure.ui;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 /**
  * Created by Maker on 2020/9/1.
  * Description:
  */
+@Entity(tableName = "login")
 public class LoginBean {
     private String access_token;
     private String token_type;
@@ -13,6 +17,7 @@ public class LoginBean {
     private Object wxOpenId;
     private String telephone;
     private String userType;
+    @PrimaryKey
     private long userId;
     private String appType;
 
