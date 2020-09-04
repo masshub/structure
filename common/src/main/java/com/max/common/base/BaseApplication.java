@@ -8,8 +8,6 @@ import androidx.annotation.NonNull;
 
 import com.max.common.utils.SPUtils;
 
-import butterknife.internal.Utils;
-
 /**
  * Created by Maker on 2020/9/2.
  * Description:

@@ -1,6 +1,7 @@
 package com.max.structure;
 
 import com.max.common.App;
+import com.max.structure.data.repository.DataRepository;
 import com.max.structure.persistence.AppDataBase;
 
 /**

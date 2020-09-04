@@ -16,7 +16,6 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Map;
 
-//import com.max.common.utils.MaterialDialogUtils;
 
 /**
  * Created by Maker on 2020/8/27.

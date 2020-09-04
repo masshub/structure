@@ -1,4 +1,4 @@
-package com.max.structure;
+package com.max.structure.data.repository;
 
 import androidx.lifecycle.MediatorLiveData;
 
