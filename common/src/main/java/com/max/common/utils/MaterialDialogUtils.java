@@ -1,25 +1,25 @@
-//package com.max.common.utils;
-//
-//import android.content.Context;
-//import android.content.DialogInterface;
-//import android.graphics.Color;
-//import android.text.InputType;
-//import android.text.TextUtils;
-//import android.view.KeyEvent;
-//import android.view.View;
-//
-//import androidx.annotation.NonNull;
-//
-//import com.afollestad.materialdialogs.MaterialDialog;
-//import com.max.common.R;
-//
-//import java.util.List;
-//
-///**
-// * Created by Maker on 2020/8/28.
-// * Description:
-// */
-//public class MaterialDialogUtils {
+package com.max.common.utils;
+
+import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Color;
+import android.text.InputType;
+import android.text.TextUtils;
+import android.view.KeyEvent;
+import android.view.View;
+
+import androidx.annotation.NonNull;
+
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.max.common.R;
+
+import java.util.List;
+
+/**
+ * Created by Maker on 2020/8/28.
+ * Description:
+ */
+public class MaterialDialogUtils {
 //    public void showThemed(Context context, String
 //            title, String content) {
 //        new MaterialDialog(context)
@@ -386,4 +386,4 @@
 //
 //        return builder;
 //    }
-//}
+}

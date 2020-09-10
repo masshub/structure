@@ -1,7 +1,7 @@
 package com.max.structure.service;
 
 import com.max.common.http.BaseApi;
-import com.max.structure.ui.LoginBean;
+import com.max.structure.ui.login.LoginBean;
 
 import java.util.Map;
 

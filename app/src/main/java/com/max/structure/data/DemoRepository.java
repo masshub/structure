@@ -6,7 +6,7 @@ import androidx.annotation.VisibleForTesting;
 
 import com.max.common.base.BaseModel;
 import com.max.common.base.BaseResponse;
-import com.max.structure.ui.LoginBean;
+import com.max.structure.ui.login.LoginBean;
 
 import java.util.Map;
 

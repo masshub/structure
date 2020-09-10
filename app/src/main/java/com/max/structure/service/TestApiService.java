@@ -1,7 +1,7 @@
 package com.max.structure.service;
 
 import com.max.common.base.BaseResponse;
-import com.max.structure.ui.LoginBean;
+import com.max.structure.ui.login.LoginBean;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;

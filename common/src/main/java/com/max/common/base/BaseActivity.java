@@ -16,6 +16,8 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Map;
 
+import butterknife.ButterKnife;
+
 
 /**
  * Created by Maker on 2020/8/27.
@@ -28,6 +30,7 @@ public abstract class BaseActivity<VM extends BaseViewModel> extends AppCompatAc
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getContentView(savedInstanceState));
+        ButterKnife.bind(this);
 
         viewModel = initViewModel();
         if (viewModel == null) {

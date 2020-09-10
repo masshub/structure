@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.max.structure.data.DemoRepository;
-import com.max.structure.ui.LoginViewModel;
+import com.max.structure.ui.login.LoginViewModel;
 
 /**
  * Created by Maker on 2020/9/1.

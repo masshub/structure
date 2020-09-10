@@ -40,9 +40,9 @@ android {
 
 dependencies {
     api 'androidx.multidex:multidex:2.0.1'
-    implementation fileTree(dir: "libs", include: ["*.jar"])
+    api fileTree(dir: "libs", include: ["*.jar"])
     api 'android.arch.lifecycle:livedata:1.1.1'
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+    api 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
     androidTestApi 'androidx.test.ext:junit:1.1.1'
     androidTestApi 'androidx.test.espresso:espresso-core:3.2.0'
     testApi 'junit:junit:4.13'
@@ -88,6 +88,10 @@ dependencies {
     api 'com.afollestad.material-dialogs:core:3.3.0'
 
     api 'com.jakewharton.rxbinding4:rxbinding:4.0.0'
+
+    api 'com.airbnb.android:lottie:3.4.2'
+
+    api 'com.github.ybq:Android-SpinKit:1.4.0'
 
 
 }

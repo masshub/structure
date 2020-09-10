@@ -1,4 +1,4 @@
-package com.max.structure.ui;
+package com.max.structure.ui.login;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

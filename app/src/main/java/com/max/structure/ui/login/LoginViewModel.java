@@ -1,4 +1,4 @@
-package com.max.structure.ui;
+package com.max.structure.ui.login;
 
 import android.app.Application;
 import android.text.TextUtils;
@@ -19,6 +19,7 @@ import com.max.common.utils.PhoneUtils;
 import com.max.common.utils.RxUtils;
 import com.max.common.utils.ToastUtils;
 import com.max.structure.data.DemoRepository;
+import com.max.structure.ui.login.LoginBean;
 
 import java.util.HashMap;
 import java.util.Map;

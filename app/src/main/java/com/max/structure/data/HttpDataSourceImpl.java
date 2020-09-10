@@ -2,11 +2,9 @@ package com.max.structure.data;
 
 import com.max.common.base.BaseResponse;
 import com.max.structure.service.DemoApiService;
-import com.max.structure.service.TestApiService;
-import com.max.structure.ui.LoginBean;
+import com.max.structure.ui.login.LoginBean;
 
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 

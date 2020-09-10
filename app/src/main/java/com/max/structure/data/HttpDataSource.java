@@ -2,7 +2,7 @@ package com.max.structure.data;
 
 
 import com.max.common.base.BaseResponse;
-import com.max.structure.ui.LoginBean;
+import com.max.structure.ui.login.LoginBean;
 
 import java.util.Map;
 

@@ -7,7 +7,7 @@
 //import com.max.common.http.RetrofitClient;
 //import com.max.structure.data.HttpDataSource;
 //import com.max.structure.data.LocalDataSource;
-//import com.max.structure.ui.LoginBean;
+//import com.max.structure.ui.login.LoginBean;
 //
 //import io.reactivex.Observable;
 //

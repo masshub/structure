@@ -14,7 +14,7 @@ import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.max.structure.AppExecutors;
-import com.max.structure.ui.LoginBean;
+import com.max.structure.ui.login.LoginBean;
 
 /**
  * Created by Maker on 2020/9/3.
