@@ -50,13 +50,12 @@ public class LoginActivity extends BaseActivity<LoginViewModel> {
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                viewModel.login(mUserName,mUserPassword);
+                viewModel.login(mUserName, mUserPassword);
 
             }
         });
 
     }
-
 
 
 }
