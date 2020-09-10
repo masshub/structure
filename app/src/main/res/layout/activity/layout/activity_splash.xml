@@ -12,7 +12,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:lottie_fileName="30350-android-logo.json"
+        app:lottie_fileName="30609-android-bugdroid-formal.json"
         app:lottie_autoPlay="true" />
 
     <ImageView
