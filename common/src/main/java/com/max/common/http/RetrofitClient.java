@@ -2,14 +2,12 @@ package com.max.common.http;
 
 import android.annotation.SuppressLint;
 import android.text.TextUtils;
-import android.util.ArrayMap;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
-import com.max.common.App;
 import com.max.common.base.BaseApplication;
 import com.max.common.constant.GlobalConfig;
 import com.max.common.utils.AppUtils;
@@ -25,16 +23,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
-import static io.reactivex.rxjava3.android.schedulers.AndroidSchedulers.*;
 
 /**
  * Created by Maker on 2020/8/27.
@@ -102,7 +96,7 @@ public class RetrofitClient {
         retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .client(HttpClient.getInstance(headers))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(
                         new GsonBuilder()

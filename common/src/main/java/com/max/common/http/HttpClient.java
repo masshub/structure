@@ -8,6 +8,7 @@ import com.max.common.http.cookie.CookieJarImpl;
 import com.max.common.http.cookie.PersistentCookieStore;
 import com.max.common.http.interceptors.BaseInterceptor;
 import com.max.common.http.interceptors.CacheInterceptor;
+import com.max.common.http.interceptors.NetworkInterceptor;
 import com.max.common.http.logging.Level;
 import com.max.common.http.logging.LoggingInterceptor;
 import com.max.common.http.utils.HttpsUtil;
@@ -22,6 +23,7 @@ import okhttp3.Cache;
 import okhttp3.ConnectionPool;
 import okhttp3.OkHttpClient;
 import okhttp3.Protocol;
+import okhttp3.internal.http.BridgeInterceptor;
 import okhttp3.internal.platform.Platform;
 
 

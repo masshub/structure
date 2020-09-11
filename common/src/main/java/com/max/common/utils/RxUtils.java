@@ -10,13 +10,11 @@ import com.max.common.http.ExceptionHandle;
 import com.trello.rxlifecycle4.LifecycleProvider;
 import com.trello.rxlifecycle4.LifecycleTransformer;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
-import io.reactivex.ObservableTransformer;
-import io.reactivex.Scheduler;
-import io.reactivex.functions.Function;
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableSource;
+import io.reactivex.rxjava3.core.ObservableTransformer;
+import io.reactivex.rxjava3.functions.Function;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 
 /**
@@ -78,7 +76,7 @@ public class RxUtils {
             @Override
             public ObservableSource apply(Observable observable) {
                 return observable
-//                        .map(new HandleFuc<T>())  //这里可以取出BaseResponse中的Result
+//                        .map(new HandleFuc<>())  //这里可以取出BaseResponse中的Result
                         .onErrorResumeNext(new HttpResponseFunc());
             }
         };
@@ -95,7 +93,7 @@ public class RxUtils {
         @Override
         public T apply(BaseResponse<T> response) {
             if (!response.isSuccess())
-                throw new RuntimeException(!"".equals(response.getStatus() + "" + response.getMessage()) ? response.getMessage() : "");
+                throw new RuntimeException(!"******".equals(response.getStatus() + "" + response.getMessage()) ? response.getMessage() : "");
             return response.getData();
         }
     }

@@ -17,11 +17,9 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
-import com.max.common.App;
+import com.max.common.App0;
 
 import java.lang.ref.WeakReference;
-
-import butterknife.internal.Utils;
 
 /**
  * Created by Maker on 2020/8/27.
@@ -32,7 +30,7 @@ public class ToastUtils {
     private static Toast sToast;
     private static int gravity         = Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM;
     private static int xOffset         = 0;
-    private static int yOffset         = (int) (64 * App.mApp.getResources().getDisplayMetrics().density + 0.5);
+    private static int yOffset         = (int) (64 * App0.mApp.getResources().getDisplayMetrics().density + 0.5);
     private static int backgroundColor = DEFAULT_COLOR;
     private static int bgResource      = -1;
     private static int messageColor    = DEFAULT_COLOR;
@@ -62,7 +60,7 @@ public class ToastUtils {
      * @param layoutId 视图
      */
     public static void setView(@LayoutRes int layoutId) {
-        LayoutInflater inflate = (LayoutInflater) App.mApp.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflate = (LayoutInflater) App0.mApp.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         sViewWeakReference = new WeakReference<>(inflate.inflate(layoutId, null));
     }
 
@@ -355,7 +353,7 @@ public class ToastUtils {
      * @param duration 显示时长
      */
     private static void show(@StringRes int resId, int duration) {
-        show(App.mApp.getResources().getText(resId).toString(), duration);
+        show(App0.mApp.getResources().getText(resId).toString(), duration);
     }
 
     /**
@@ -366,7 +364,7 @@ public class ToastUtils {
      * @param args     参数
      */
     private static void show(@StringRes int resId, int duration, Object... args) {
-        show(String.format(App.mApp.getResources().getString(resId), args), duration);
+        show(String.format(App0.mApp.getResources().getString(resId), args), duration);
     }
 
     /**
@@ -392,7 +390,7 @@ public class ToastUtils {
         if (sViewWeakReference != null) {
             final View view = sViewWeakReference.get();
             if (view != null) {
-                sToast = new Toast(App.mApp);
+                sToast = new Toast(App0.mApp);
                 sToast.setView(view);
                 sToast.setDuration(duration);
                 isCustom = true;
@@ -403,9 +401,9 @@ public class ToastUtils {
                 SpannableString spannableString = new SpannableString(text);
                 ForegroundColorSpan colorSpan = new ForegroundColorSpan(messageColor);
                 spannableString.setSpan(colorSpan, 0, spannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                sToast = Toast.makeText(App.mApp, spannableString, duration);
+                sToast = Toast.makeText(App0.mApp, spannableString, duration);
             } else {
-                sToast = Toast.makeText(App.mApp, text, duration);
+                sToast = Toast.makeText(App0.mApp, text, duration);
             }
         }
         View view = sToast.getView();

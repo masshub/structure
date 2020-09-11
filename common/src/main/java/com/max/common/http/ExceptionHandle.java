@@ -4,6 +4,7 @@ import android.net.ParseException;
 
 import com.google.gson.JsonParseException;
 import com.google.gson.stream.MalformedJsonException;
+import com.max.custom.toast.Toasty;
 
 import org.apache.http.conn.ConnectTimeoutException;
 import org.json.JSONException;
@@ -20,6 +21,7 @@ public class ExceptionHandle {
     private static final int UNAUTHORIZED = 401;
     private static final int FORBIDDEN = 403;
     private static final int NOT_FOUND = 404;
+    private static final int NOT_PASSWORD = 406;
     private static final int REQUEST_TIMEOUT = 408;
     private static final int INTERNAL_SERVER_ERROR = 500;
     private static final int SERVICE_UNAVAILABLE = 503;
@@ -47,6 +49,9 @@ public class ExceptionHandle {
                     break;
                 case SERVICE_UNAVAILABLE:
                     ex.message = "服务器不可用";
+                    break;
+                case NOT_PASSWORD:
+                    ex.message = "用户未设置密码，请选用其他登录方式";
                     break;
                 default:
                     ex.message = "网络错误";

@@ -6,9 +6,9 @@ import androidx.multidex.MultiDexApplication;
  * Created by Maker on 2020/8/27.
  * Description:
  */
-public class App extends MultiDexApplication {
+public class App0 extends MultiDexApplication {
 
-    public static App mApp;
+    public static App0 mApp;
 
     @Override
     public void onCreate() {

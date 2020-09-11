@@ -6,7 +6,8 @@ import com.max.structure.ui.login.LoginBean;
 
 import java.util.Map;
 
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.core.Observable;
+
 
 public class HttpDataSourceImpl implements HttpDataSource{
     private DemoApiService apiService;
@@ -28,7 +29,7 @@ public class HttpDataSourceImpl implements HttpDataSource{
     }
 
     @Override
-    public Observable<LoginBean> login(Map<String,String> headers,Map<String,String> params) {
+    public Observable<LoginBean> login(Map<String,String> headers, Map<String,String> params) {
         return apiService.login(headers,params);
     }
 

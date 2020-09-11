@@ -1,5 +1,7 @@
 package com.max.common.base;
 
+import com.max.custom.toast.Toasty;
+
 /**
  * Created by Maker on 2020/8/27.
  * Description:
@@ -26,6 +28,7 @@ public class BaseResponse<T> {
     }
 
     public void setMessage(String message) {
+        Toasty.error(message);
         this.message = message;
     }
 
@@ -67,5 +70,19 @@ public class BaseResponse<T> {
 
     public void setData(T data) {
         this.data = data;
+    }
+
+
+    @Override
+    public String toString() {
+        return "BaseResponse{" +
+                "message='" + message + '\'' +
+                ", errors='" + errors + '\'' +
+                ", code='" + code + '\'' +
+                ", success=" + success +
+                ", timestamp='" + timestamp + '\'' +
+                ", status=" + status +
+                ", data=" + data +
+                '}';
     }
 }

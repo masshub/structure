@@ -1,13 +1,14 @@
 package com.max.common.http;
 
-import com.max.common.App;
+import com.max.common.App0;
 import com.max.common.base.AppManager;
 import com.max.common.base.BaseResponse;
 import com.max.common.http.utils.NetworkUtil;
 import com.max.common.utils.LogUtil;
 import com.max.common.utils.ToastUtils;
 
-import io.reactivex.observers.DisposableObserver;
+import io.reactivex.rxjava3.observers.DisposableObserver;
+
 
 /**
  * Created by Maker on 2020/8/27.
@@ -38,7 +39,7 @@ public abstract class ApiDisposableObserver<T> extends DisposableObserver<T> {
         super.onStart();
         ToastUtils.showShort("http is start");
         // if  NetworkAvailable no !   must to call onCompleted
-        if (!NetworkUtil.isNetworkAvailable(App.mApp)) {
+        if (!NetworkUtil.isNetworkAvailable(App0.mApp)) {
             LogUtil.d("无网络，读取缓存数据");
             onComplete();
         }

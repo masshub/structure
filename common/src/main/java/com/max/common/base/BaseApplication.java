@@ -5,6 +5,7 @@ import android.app.Application;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.multidex.MultiDexApplication;
 
 import com.max.common.utils.SPUtils;
 
@@ -12,7 +13,7 @@ import com.max.common.utils.SPUtils;
  * Created by Maker on 2020/9/2.
  * Description:
  */
-public class BaseApplication extends Application {
+public class BaseApplication extends MultiDexApplication {
     private static Application sInstance;
 
     @Override

@@ -8,7 +8,7 @@ import android.util.Property;
 import android.view.animation.Animation;
 import android.view.animation.Interpolator;
 
-import com.github.ybq.android.spinkit.animation.interpolator.KeyFrameInterpolator;
+import com.max.custom.loading.animation.interpolator.KeyFrameInterpolator;
 import com.max.custom.loading.loading.Loading;
 
 import java.util.HashMap;

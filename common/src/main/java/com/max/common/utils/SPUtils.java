@@ -5,9 +5,6 @@ import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
 
-import com.max.common.App;
-import com.max.common.base.BaseApplication;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;

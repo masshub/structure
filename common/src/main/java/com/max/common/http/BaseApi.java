@@ -32,7 +32,7 @@ public class BaseApi {
     public static void setEnvironment(String environment) throws Exception {
         mEnvironment = environment;
         SPUtils.getInstance().put("environment",environment);
-        currentApiConfig(environment);
+//        currentApiConfig(environment);
     }
 
     public static String getAgreementHost() {

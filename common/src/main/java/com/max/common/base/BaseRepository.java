@@ -2,8 +2,9 @@ package com.max.common.base;
 
 import androidx.lifecycle.MutableLiveData;
 
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
+
 
 /**
  * Created by Maker on 2020/8/28.

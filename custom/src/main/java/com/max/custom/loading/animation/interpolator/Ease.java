@@ -2,7 +2,7 @@ package com.max.custom.loading.animation.interpolator;
 
 import android.view.animation.Interpolator;
 
-import com.github.ybq.android.spinkit.animation.interpolator.PathInterpolatorCompat;
+
 
 /**
  * Created by ybq.

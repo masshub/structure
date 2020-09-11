@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
 import androidx.databinding.ObservableInt;
 
-import com.max.common.App;
+import com.max.common.App0;
 import com.max.common.base.BaseViewModel;
 import com.max.common.bus.event.SingleLiveEvent;
 import com.max.common.http.BaseApi;
@@ -17,16 +17,16 @@ import com.max.common.utils.LogUtil;
 import com.max.common.utils.MD5Utils;
 import com.max.common.utils.PhoneUtils;
 import com.max.common.utils.RxUtils;
-import com.max.common.utils.ToastUtils;
+import com.max.custom.toast.Toasty;
 import com.max.structure.data.DemoRepository;
-import com.max.structure.ui.login.LoginBean;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.observers.DisposableObserver;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.observers.DisposableObserver;
+
 
 public class LoginViewModel extends BaseViewModel<DemoRepository> {
     private DemoRepository mRepository;
@@ -54,15 +54,15 @@ public class LoginViewModel extends BaseViewModel<DemoRepository> {
 
 
     /**
-     * 网络模拟一个登陆操作
+     * 登陆
      **/
     public void login(EditText userName,EditText password) {
         if (TextUtils.isEmpty(userName.getText().toString().trim())) {
-            ToastUtils.showShort("请输入账号！");
+            Toasty.success("请输入账号！");
             return;
         }
         if (TextUtils.isEmpty(password.getText().toString().trim())) {
-            ToastUtils.showShort("请输入密码！");
+            Toasty.error("请输入密码！");
             return;
         }
 
@@ -72,12 +72,13 @@ public class LoginViewModel extends BaseViewModel<DemoRepository> {
         Map<String, String> params = new HashMap<>();
         params.put("mobile", userName.getText().toString().trim());
         params.put("grant_type","store_password");
-        params.put("deviceId", PhoneUtils.getDeviceId(App.mApp));
+        params.put("deviceId", PhoneUtils.getDeviceId(App0.mApp));
         params.put("password", MD5Utils.getMD5(password.getText().toString().trim()));
 
 
         model.login(header, params)
                 .compose(RxUtils.schedulersTransformer())
+                .compose(RxUtils.exceptionTransformer())
                 .doOnSubscribe(this)
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
@@ -89,19 +90,14 @@ public class LoginViewModel extends BaseViewModel<DemoRepository> {
                 }).subscribe(new DisposableObserver<LoginBean>() {
             @Override
             public void onNext(LoginBean response) {
+                Toasty.success("登录成功！");
 
-                // 请求成功
-                LogUtil.d("请求成功");
-                LogUtil.d(response.getAccess_token());
-                LogUtil.d(response.getAppType());
-                LogUtil.d(response.getExpires_in());
-                LogUtil.d(response.getRefresh_token());
             }
 
             @Override
             public void onError(Throwable e) {
                 // 请求失败
-                LogUtil.d("请求失败");
+                Toasty.error("登录失败！");
 
             }
 

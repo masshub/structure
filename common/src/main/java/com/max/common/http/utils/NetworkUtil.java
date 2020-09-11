@@ -9,7 +9,7 @@ import android.telephony.TelephonyManager;
 
 import androidx.core.app.ActivityCompat;
 
-import com.max.common.App;
+import com.max.common.App0;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -180,7 +180,7 @@ public class NetworkUtil {
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         TelephonyManager mgrTel = (TelephonyManager) context
                 .getSystemService(Context.TELEPHONY_SERVICE);
-        if (ActivityCompat.checkSelfPermission(App.mApp, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(App0.mApp, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding

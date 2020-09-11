@@ -10,7 +10,8 @@ import com.max.structure.ui.login.LoginBean;
 
 import java.util.Map;
 
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.core.Observable;
+
 
 /**
  * Created by Maker on 2020/9/1.
