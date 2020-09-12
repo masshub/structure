@@ -78,7 +78,8 @@ public class LoginViewModel extends BaseViewModel<DemoRepository> {
 
         model.login(header, params)
                 .compose(RxUtils.schedulersTransformer())
-                .compose(RxUtils.exceptionTransformer())
+                .map(new RxUtils.HandleFuc<LoginBean>())
+//                .compose(RxUtils.exceptionTransformer())
                 .doOnSubscribe(this)
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
@@ -90,14 +91,14 @@ public class LoginViewModel extends BaseViewModel<DemoRepository> {
                 }).subscribe(new DisposableObserver<LoginBean>() {
             @Override
             public void onNext(LoginBean response) {
-                Toasty.success("登录成功！");
+//                Toasty.success("登录成功！");
 
             }
 
             @Override
             public void onError(Throwable e) {
                 // 请求失败
-                Toasty.error("登录失败！");
+//                Toasty.error("登录失败！");
 
             }
 

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 
 import com.max.common.base.BaseResponse;
 import com.max.common.http.ExceptionHandle;
+import com.max.custom.toast.Toasty;
 import com.trello.rxlifecycle4.LifecycleProvider;
 import com.trello.rxlifecycle4.LifecycleTransformer;
 
@@ -76,7 +77,7 @@ public class RxUtils {
             @Override
             public ObservableSource apply(Observable observable) {
                 return observable
-//                        .map(new HandleFuc<>())  //这里可以取出BaseResponse中的Result
+//                        .map(new HandleFuc())  //这里可以取出BaseResponse中的Result
                         .onErrorResumeNext(new HttpResponseFunc());
             }
         };
@@ -89,9 +90,10 @@ public class RxUtils {
         }
     }
 
-    private static class HandleFuc<T> implements Function<BaseResponse<T>, T> {
+    public static class HandleFuc<T> implements Function<BaseResponse<T>, T> {
         @Override
         public T apply(BaseResponse<T> response) {
+            Toasty.error(response.toString());
             if (!response.isSuccess())
                 throw new RuntimeException(!"******".equals(response.getStatus() + "" + response.getMessage()) ? response.getMessage() : "");
             return response.getData();

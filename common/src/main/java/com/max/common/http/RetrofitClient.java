@@ -65,7 +65,7 @@ public class RetrofitClient {
 
         if (url.contains("token/evict") || url.contains("sms/code") || url.contains("mars-serving-web/api/setting/app")) {
             // 退出登陆 发送验证码  不需要head
-            baseUrl = BaseApi.AUTH_HOST;
+//            baseUrl = BaseApi.AUTH_HOST;
 
 
         } else {
@@ -79,7 +79,7 @@ public class RetrofitClient {
             if (StringUtils.isBlank(header.get("Authorization"))) {
                 headers.put("Authorization","334128");
             }
-            baseUrl = BaseApi.AUTH_HOST;
+//            baseUrl = BaseApi.AUTH_HOST;
         }
 
 
