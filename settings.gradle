@@ -1,3 +1,5 @@
+include ':dependencies'
+include ':network'
 include ':custom'
 include ':common'
 include ':app'
