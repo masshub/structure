@@ -69,7 +69,6 @@ public class RetrofitClient {
 
 
         } else {
-            // 退出登陆 发送验证码  不需要head
             header.put("deviceId", PhoneUtils.getDeviceId(BaseApplication.getInstance().getApplicationContext()));
             header.put("versionCode", "" + AppUtils.getVersionCode(BaseApplication.getInstance().getApplicationContext()));
 //            header.put("remoteip",AppUtils.getLocalIpV4Address());

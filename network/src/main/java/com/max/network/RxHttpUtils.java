@@ -4,18 +4,20 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 
-import com.allen.library.config.OkHttpConfig;
-import com.allen.library.cookie.CookieJarImpl;
-import com.allen.library.cookie.store.CookieStore;
-import com.allen.library.download.DownloadHelper;
-import com.allen.library.factory.ApiFactory;
-import com.allen.library.manage.RxHttpManager;
-import com.allen.library.upload.UploadHelper;
+
+import com.max.network.config.OkHttpConfig;
+import com.max.network.cookie.CookieJarImpl;
+import com.max.network.cookie.store.CookieStore;
+import com.max.network.download.DownloadHelper;
+import com.max.network.factory.ApiFactory;
+import com.max.network.manage.RxHttpManager;
+import com.max.network.upload.UploadHelper;
 
 import java.util.List;
 import java.util.Map;
 
-import io.reactivex.Observable;
+
+import io.reactivex.rxjava3.core.Observable;
 import okhttp3.Cookie;
 import okhttp3.HttpUrl;
 import okhttp3.ResponseBody;

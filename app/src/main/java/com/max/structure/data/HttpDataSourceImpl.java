@@ -1,7 +1,7 @@
 package com.max.structure.data;
 
 import com.max.common.base.BaseResponse;
-import com.max.structure.service.DemoApiService;
+import com.max.structure.service.ApiService;
 import com.max.structure.ui.login.LoginBean;
 
 import java.util.Map;
@@ -10,14 +10,14 @@ import io.reactivex.rxjava3.core.Observable;
 
 
 public class HttpDataSourceImpl implements HttpDataSource{
-    private DemoApiService apiService;
+    private ApiService apiService;
     private volatile static HttpDataSourceImpl instance = null;
 
-    public HttpDataSourceImpl(DemoApiService service) {
+    public HttpDataSourceImpl(ApiService service) {
         this.apiService = service;
     }
 
-    public static HttpDataSourceImpl getInstance(DemoApiService service) {
+    public static HttpDataSourceImpl getInstance(ApiService service) {
         if(instance == null){
             synchronized (HttpDataSourceImpl.class){
                 if(instance == null){

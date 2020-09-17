@@ -18,13 +18,16 @@ import com.max.common.utils.MD5Utils;
 import com.max.common.utils.PhoneUtils;
 import com.max.common.utils.RxUtils;
 import com.max.custom.toast.Toasty;
+import com.max.network.RxHttpUtils;
+import com.max.network.interceptor.Transformer;
+import com.max.network.observer.CommonObserver;
+import com.max.network.observer.DataObserver;
 import com.max.structure.data.DemoRepository;
+import com.max.structure.service.ApiService;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.observers.DisposableObserver;
 
 
@@ -56,7 +59,7 @@ public class LoginViewModel extends BaseViewModel<DemoRepository> {
     /**
      * 登陆
      **/
-    public void login(EditText userName,EditText password) {
+    public void login(EditText userName, EditText password) {
         if (TextUtils.isEmpty(userName.getText().toString().trim())) {
             Toasty.success("请输入账号！");
             return;
@@ -71,9 +74,43 @@ public class LoginViewModel extends BaseViewModel<DemoRepository> {
                 "Basic " + Base64.encodeToString((BaseApi.APP_OAUTH2_CLIENT_ID + ":" + BaseApi.APP_OAUTH2_CLIENT_SECRET).getBytes(), Base64.URL_SAFE | Base64.NO_WRAP | Base64.NO_PADDING));
         Map<String, String> params = new HashMap<>();
         params.put("mobile", userName.getText().toString().trim());
-        params.put("grant_type","store_password");
+        params.put("grant_type", "store_password");
         params.put("deviceId", PhoneUtils.getDeviceId(App0.mApp));
         params.put("password", MD5Utils.getMD5(password.getText().toString().trim()));
+
+        RxHttpUtils
+                .createApi(ApiService.class)
+                .login(header,params)
+                .subscribe(new CommonObserver<LoginBean>() {
+                    @Override
+                    protected void onError(String errorMsg) {
+                        Toasty.success(errorMsg);
+
+                    }
+
+                    @Override
+                    protected void onSuccess(LoginBean data) {
+                        Toasty.success(data.toString());
+
+                    }
+                });
+
+        RxHttpUtils
+                .createApi(ApiService.class)
+                .test(header,params)
+                .subscribe(new DataObserver<LoginBean>() {
+                    @Override
+                    protected void onError(String errorMsg) {
+                        Toasty.success(errorMsg);
+
+                    }
+
+                    @Override
+                    protected void onSuccess(LoginBean data) {
+                        Toasty.success(data.toString());
+
+                    }
+                });
 
 
         model.login(header, params)
@@ -81,34 +118,27 @@ public class LoginViewModel extends BaseViewModel<DemoRepository> {
                 .map(new RxUtils.HandleFuc<LoginBean>())
 //                .compose(RxUtils.exceptionTransformer())
                 .doOnSubscribe(this)
-                .doOnSubscribe(new Consumer<Disposable>() {
+                .subscribe(new DisposableObserver<LoginBean>() {
                     @Override
-                    public void accept(Disposable disposable) throws Exception {
-                        // 请求开始
-                        LogUtil.d("请求开始");
-
-                    }
-                }).subscribe(new DisposableObserver<LoginBean>() {
-            @Override
-            public void onNext(LoginBean response) {
+                    public void onNext(LoginBean response) {
 //                Toasty.success("登录成功！");
 
-            }
+                    }
 
-            @Override
-            public void onError(Throwable e) {
-                // 请求失败
+                    @Override
+                    public void onError(Throwable e) {
+                        // 请求失败
 //                Toasty.error("登录失败！");
 
-            }
+                    }
 
-            @Override
-            public void onComplete() {
-                // 请求完成
-                LogUtil.d("请求完成");
+                    @Override
+                    public void onComplete() {
+                        // 请求完成
+                        LogUtil.d("请求完成");
 
-            }
-        });
+                    }
+                });
 
 
     }

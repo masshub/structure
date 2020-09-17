@@ -60,6 +60,7 @@ dependencies {
     implementation project(path: ':common')
     implementation project(path: ':custom')
     implementation project(path: ':dependencies')
+    implementation project(path: ':network')
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
 
 }

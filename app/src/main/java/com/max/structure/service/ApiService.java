@@ -1,6 +1,8 @@
 package com.max.structure.service;
 
+import com.max.common.base.BaseResponse;
 import com.max.common.http.BaseApi;
+import com.max.network.bean.BaseData;
 import com.max.structure.ui.login.LoginBean;
 
 import java.util.Map;
@@ -16,9 +18,12 @@ import retrofit2.http.POST;
  * Created by Maker on 2020/9/1.
  * Description:
  */
-public interface DemoApiService {
+public interface ApiService {
 
     @FormUrlEncoded
     @POST(value = BaseApi.AUTH_HOST + "oauth/token")
     Observable<LoginBean> login(@HeaderMap Map<String, String> headers, @FieldMap Map<String, String> params);
+
+    @POST("oauth/token")
+    Observable<BaseData<LoginBean>> test(@HeaderMap Map<String, String> headers, @FieldMap Map<String, String> params);
 }
